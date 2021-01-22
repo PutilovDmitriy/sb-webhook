@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 
-const hostname = 'localhost';
+const hostname = 'sasik-fail.herokuapp.com';
 const port = 3000;
 
 const getFilePath = (path) => {
@@ -36,5 +36,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+    console.log(`Server running at https://${hostname}/`);
 });

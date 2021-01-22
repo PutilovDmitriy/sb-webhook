@@ -12,11 +12,7 @@ function changeTimer(el, serverDate) {
     const textHours = declOfNum(diff.getUTCHours(), ['час', 'часа', 'часов']);
     const textMinutes = declOfNum(diff.getUTCMinutes(), ['минута', 'минуты', 'минут']);
     const textSeconds = declOfNum(diff.getUTCSeconds(), ['секунда', 'секунды', 'секунд']);
-    if ((diff.getUTCDate() - 1) <= 0 && diff.getUTCHours() <= 0 && diff.getUTCMinutes() <= 0 && diff.getUTCSeconds() <= 0) {
-        el.innerText = 0
-    } else {
-        el.innerText = `${diff.getUTCDate() - 1} ${textDays}, ${diff.getUTCHours()} ${textHours}, ${diff.getUTCMinutes()} ${textMinutes}, ${diff.getUTCSeconds()} ${textSeconds}`;
-    }
+    el.innerText = `${diff.getUTCDate() - 1} ${textDays}, ${diff.getUTCHours()} ${textHours}, ${diff.getUTCMinutes()} ${textMinutes}, ${diff.getUTCSeconds()} ${textSeconds}`;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshButton = document.getElementById('refresh');
     if (refreshButton) {
         refreshButton.addEventListener('click', () => {
-            timerEl.innerText = 'Подождите...'
             fetch('https://sasik-fail.herokuapp.com/api/changeDate')
                 .then(res => res.json())
                 .then(data => {

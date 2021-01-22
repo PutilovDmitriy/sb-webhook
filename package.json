@@ -1,0 +1,23 @@
+{
+  "name": "sasikfails",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PutilovDmitriy/sasikFails.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PutilovDmitriy/sasikFails/issues"
+  },
+  "homepage": "https://github.com/PutilovDmitriy/sasikFails#readme",
+  "dependencies": {
+    "http": "^0.0.1-security"
+  }
+}

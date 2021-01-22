@@ -22,7 +22,7 @@ function changeTimer(el, serverDate) {
 document.addEventListener("DOMContentLoaded", () => {
     let serverDate = new Date();
     const timerEl = document.getElementById('timer');
-    fetch('http://localhost:5000/api/getDate')
+    fetch('https://sasik-fail.herokuapp.com/api/getDate')
         .then(res => res.json())
         .then(data => {
             serverDate = data.date
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (refreshButton) {
         refreshButton.addEventListener('click', () => {
             timerEl.innerText = 'Подождите...'
-            fetch('http://localhost:5000/api/changeDate')
+            fetch('https://sasik-fail.herokuapp.com/api/changeDate')
                 .then(res => res.json())
                 .then(data => {
                     clearInterval(interval);

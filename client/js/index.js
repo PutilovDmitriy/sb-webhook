@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             serverDate = data.date
             changeTimer(timerEl, serverDate);
         })
-    setInterval(() => changeTimer(timerEl, serverDate), 1000)
+    let interval = setInterval(() => changeTimer(timerEl, serverDate), 1000)
     const refreshButton = document.getElementById('refresh');
     if (refreshButton) {
         refreshButton.addEventListener('click', () => {
@@ -32,8 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
             fetch('https://sasik-fail.herokuapp.com/api/changeDate')
                 .then(res => res.json())
                 .then(data => {
+                    clearInterval(interval);
                     serverDate = data.date;
                     changeTimer(timerEl, data.date)
+                    interval = setInterval(() => changeTimer(timerEl, serverDate), 1000)
                 })
         })
     }

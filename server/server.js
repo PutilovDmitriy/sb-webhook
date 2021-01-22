@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 
 const hostname = 'sasik-fail.herokuapp.com';
-const port = 3000;
+const port = process.env.PORT || 5000;
 
 const getFilePath = (path) => {
     if (path === '/') {

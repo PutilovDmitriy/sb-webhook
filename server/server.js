@@ -14,6 +14,7 @@ const getFilePath = (path) => {
 let date = new Date();
 
 const server = http.createServer((req, res) => {
+    console.log(req)
     if (req.url.includes('api')) {
         res.statusCode = 200;
         if (req.url === '/api/changeDate') {

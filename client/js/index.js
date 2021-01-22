@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshButton = document.getElementById('refresh');
     if (refreshButton) {
         refreshButton.addEventListener('click', () => {
+            timerEl.innerText = 'Подождите...'
             fetch('https://sasik-fail.herokuapp.com/api/changeDate')
                 .then(res => res.json())
                 .then(data => {

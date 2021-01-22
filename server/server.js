@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 
-const hostname = 'sasik-fail.herokuapp.com';
+const hostname = 'localhost';
 const port = process.env.PORT || 5000;
 
 const getFilePath = (path) => {
@@ -14,7 +14,6 @@ const getFilePath = (path) => {
 let date = new Date();
 
 const server = http.createServer((req, res) => {
-    console.log(req)
     if (req.url.includes('api')) {
         res.statusCode = 200;
         if (req.url === '/api/changeDate') {
@@ -30,6 +29,9 @@ const server = http.createServer((req, res) => {
                 res.end("Resourse not found!");
             }
             else{
+                if (filePath.includes('public')) {
+                    res.writeHead(200, {'Content-Type': 'image/jpg'})
+                }
                 res.end(data);
             }
         });
@@ -37,5 +39,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, () => {
-    console.log(`Server running at https://${hostname}/`);
+    console.log(`Server running at http://${hostname}:${port}/`);
 });

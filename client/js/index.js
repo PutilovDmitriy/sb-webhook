@@ -5,7 +5,6 @@ function declOfNum(number, titles) {
 }
 
 function changeTimer(el, serverDate) {
-    console.log(serverDate)
     const nowDate = new Date();
     const date = new Date(serverDate);
     const diff = new Date(nowDate.getTime() - date.getTime());
@@ -19,7 +18,7 @@ function changeTimer(el, serverDate) {
 document.addEventListener("DOMContentLoaded", () => {
     let serverDate = new Date();
     const timerEl = document.getElementById('timer');
-    fetch('http://localhost:3000/api/getDate')
+    fetch('https://sasik-fail.herokuapp.com/api/getDate')
         .then(res => res.json())
         .then(data => {
             serverDate = data.date
@@ -29,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const refreshButton = document.getElementById('refresh');
     if (refreshButton) {
         refreshButton.addEventListener('click', () => {
-            fetch('http://localhost:3000/api/changeDate')
+            fetch('https://sasik-fail.herokuapp.com/api/changeDate')
                 .then(res => res.json())
                 .then(data => {
                     serverDate = data.date;

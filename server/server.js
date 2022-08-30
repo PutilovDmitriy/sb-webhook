@@ -1,43 +1,32 @@
-const http = require('http');
-const fs = require('fs');
-
-const hostname = 'localhost';
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
 const port = process.env.PORT || 5000;
 
-const getFilePath = (path) => {
-    if (path === '/') {
-        return 'client/index.html';
+const users = [
+    { id: '12345678902000', level: 1 },
+    { id: '12345678902001', level: 1 },
+    { id: '12345678902002', level: 10 },
+    { id: '12345678902003', level: 10 },
+    { id: '12345678902004', level: 10}
+]
+
+app.use(bodyParser.json())
+
+app.post('/api/validate', (req, res) => {
+    const { user } = req.body;
+    if (!user) {
+        res.status(400).end('Bad request');
     }
-    return `client${path}`
-}
-
-let date = new Date();
-
-const server = http.createServer((req, res) => {
-    if (req.url.includes('api')) {
-        res.statusCode = 200;
-        if (req.url === '/api/changeDate') {
-            date = new Date();
-        }
-        res.end(JSON.stringify({date}))
+    const { id } = user;
+    const foundUser = users.find((u) => u.id === id);
+    if (foundUser) {
+        res.status(201).send({ user: { id }, attributes: [{ key: 'level', value: foundUser.level }] })
     } else {
-        const filePath = getFilePath(req.url);
-        fs.readFile(filePath, (err, data) => {
-            // если произошла ошибка - отправляем статусный код 404
-            if(err){
-                res.statusCode = 404;
-                res.end("Resourse not found!");
-            }
-            else{
-                if (filePath.includes('public')) {
-                    res.writeHead(200, {'Content-Type': 'image/jpg'})
-                }
-                res.end(data);
-            }
-        });
+        res.status(404).send('User not found')
     }
-});
+})
 
-server.listen(port, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})

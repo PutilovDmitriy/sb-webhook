@@ -1,14 +1,17 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5050;
 
 const users = [
-    { id: '12345678902000', level: 1 },
-    { id: '12345678902001', level: 1 },
-    { id: '12345678902002', level: 10 },
-    { id: '12345678902003', level: 10 },
-    { id: '12345678902004', level: 10}
+    { id: '12345678902000', data: { user: { id: '12345678902000' }, attributes: [{ key: 'level', value: 1 }] }},
+    { id: '12345678902001', data: { user: { id: '12345678902001' }, attributes: [{ key: 'level', value: 1 }] } },
+    { id: '12345678902002', data: { user: { id: '12345678902002' }, attributes: [{ key: 'level', value: 10 }] } },
+    { id: '12345678902003', data: { user: { id: '12345678902003' }, attributes: [{ key: 'level', value: 10 }] } },
+    { id: '12345678902004', data: { user: { id: '12345678902004' }, attributes: [{ key: 'level', value: 10 }] }},
+    { id: '12345678902005', data: undefined },
+    { id: '12345678902006', data: {} },
+    { id: '12345678902007', data: { user: { id: '12345678902007' }, attributes: {} } },
 ]
 
 app.use(bodyParser.json())
@@ -21,7 +24,7 @@ app.post('/api/validate', (req, res) => {
     const { id } = user;
     const foundUser = users.find((u) => u.id === id);
     if (foundUser) {
-        res.status(201).send({ user: { id }, attributes: [{ key: 'level', value: foundUser.level }] })
+        res.status(201).send(foundUser.data)
     } else {
         res.status(404).send('User not found')
     }

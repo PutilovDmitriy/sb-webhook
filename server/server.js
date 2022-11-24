@@ -4,8 +4,8 @@ const app = express()
 const port = process.env.PORT || 5050;
 
 const users = [
-    { id: '12345678902000', data: { user: { id: '12345678902000' }, attributes: [{ key: 'level', value: 1 }] }},
-    { id: '12345678902001', data: { user: { id: '12345678902001' }, attributes: [{ key: 'level', value: 1 }] } },
+    { id: '12345678902000', data: { user: { id: '12345678902000', name: 'Username-1' }, attributes: [{ key: 'level', value: 1 }] }},
+    { id: '12345678902001', data: { user: { id: '12345678902001', name: 'example-name' }, attributes: [{ key: 'level', value: 1 }] } },
     { id: '12345678902002', data: { user: { id: '12345678902002' }, attributes: [{ key: 'level', value: 10 }] } },
     { id: '12345678902003', data: { user: { id: '12345678902003' }, attributes: [{ key: 'level', value: 10 }] } },
     { id: '12345678902004', data: { user: { id: '12345678902004' }, attributes: [{ key: 'level', value: 10 }] }},

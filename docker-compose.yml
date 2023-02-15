@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+  sb-webhook:
+    container_name: sb-webhook
+    image: sb-webhook
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    ports:
+      - "5050:5050"

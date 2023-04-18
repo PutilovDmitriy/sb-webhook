@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 5050;
 
 const users = [
     { id: '12345678902000', data: { user: { id: '12345678902000' }, attributes: [{ key: 'level', value: 1 }] }},

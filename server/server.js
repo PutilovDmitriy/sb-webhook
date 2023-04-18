@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const port = process.env.PORT || 5050;
+const port = process.env.PORT || 6000;
 
 const users = [
     { id: '12345678902000', data: { user: { id: '12345678902000' }, attributes: [{ key: 'level', value: 1 }] }},
@@ -12,6 +12,7 @@ const users = [
     { id: '12345678902005', data: undefined },
     { id: '12345678902006', data: {} },
     { id: '12345678902007', data: { user: { id: '12345678902007' }, attributes: {} } },
+    { id: 'id-from-webhook', data: { user: { id: '12345678902010', name: 'name-from-webhook' }, attributes: {} } },
 ]
 
 app.use(bodyParser.json())
